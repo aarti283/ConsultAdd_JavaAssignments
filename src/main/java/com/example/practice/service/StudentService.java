@@ -40,8 +40,9 @@ public class StudentService {
     }
 
     // update student
-    public boolean updateStudent(Student student) {
-        return true;
+    public String updateStudent(Student student) {
+        this.studentRepo.save(student);
+        return "Student details are saved.";
     }
 
     // get student by id

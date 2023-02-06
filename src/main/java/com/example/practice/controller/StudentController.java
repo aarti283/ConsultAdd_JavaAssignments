@@ -29,14 +29,14 @@ public class StudentController {
     }
     // delete
 
-    @DeleteMapping("/deletestudent")
+    @DeleteMapping("/deletestudent/{id}")
     public String deleteStudent(@RequestBody Student student) {
         return this.studentService.deleteStudent(student);
     }
 
     // update
     @PutMapping("/updatestudent")
-    public boolean updateStudent(@RequestBody Student student) {
+    public String updateStudent(@RequestBody Student student) {
         return this.studentService.updateStudent(student);
     }
 
