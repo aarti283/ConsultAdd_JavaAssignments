@@ -32,11 +32,9 @@ public class StudentService {
 
     }
 
-    // delete student
-    public String deleteStudent(Student student) {
-        this.studentRepo.deleteById(student.getId());
-        return "Student deleted";
-
+    public String deleteStudent(int id) {
+        this.studentRepo.deleteById(id);
+        return "record deleted";
     }
 
     // update student
@@ -47,8 +45,8 @@ public class StudentService {
 
     // get student by id
 
-    public Optional<Student> getStudentById(Student student) {
-        return this.studentRepo.findById(student.getId());
+    public Optional<Student> getStudentById(int student) {
+        return this.studentRepo.findById(student);
 
     }
 

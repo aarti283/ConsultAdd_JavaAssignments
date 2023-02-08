@@ -1,21 +1,26 @@
 package com.example.practice.controller;
 
-import java.util.Optional;
+import java.util.*;
 import com.example.practice.model.Student;
+import com.example.practice.repository.StudentRepo;
 import com.example.practice.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @RestController
 public class StudentController {
     @Autowired
+    private StudentRepo studentRepo;
+
     private StudentService studentService;
 
     @GetMapping("/allstudents")
@@ -30,8 +35,9 @@ public class StudentController {
     // delete
 
     @DeleteMapping("/deletestudent/{id}")
-    public String deleteStudent(@RequestBody Student student) {
-        return this.studentService.deleteStudent(student);
+    public String deleteStudent(@PathVariable int id) {
+        this.studentService.deleteStudent(id);
+        return "deleted";
     }
 
     // update
@@ -41,8 +47,8 @@ public class StudentController {
     }
 
     // getbyid
-    @GetMapping("/getstudentbyid")
-    public Optional<Student> getStudentById(@RequestBody Student student) {
-        return this.studentService.getStudentById(student);
+    @GetMapping("/getstudentbyid/{id}")
+    public Optional<Student> getStudentById(@PathVariable int id) {
+        return this.studentService.getStudentById(id);
     }
 }
